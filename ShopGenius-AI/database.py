@@ -3,7 +3,6 @@
 import os
 from pymongo import MongoClient
 from datetime import datetime
-from dotenv import load_dotenv
 import hashlib
 
 load_dotenv()
@@ -11,10 +10,10 @@ load_dotenv()
 # -----------------------------
 # MONGO CONNECTION
 # -----------------------------
-MONGO_URI = os.getenv("MONGO_URI")
+MONGO_URI = os.environ.get("MONGO_URI")
 
 if not MONGO_URI:
-    print("[database] ❌ MONGO_URI missing in .env!")
+    print("[database] ❌ MONGO_URI missing in Streamlit Secrets!")
 
 print("[database] MONGO_URI Loaded:", bool(MONGO_URI))
 
@@ -137,3 +136,4 @@ def get_price_history(title):
     if price_col is None:
         return []
     return list(price_col.find({"title": title}).sort("timestamp", -1))
+
