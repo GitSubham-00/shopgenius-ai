@@ -5,7 +5,7 @@ import requests
 from deep_translator import GoogleTranslator as Translator
 from datetime import datetime
 
-API_URL = "https://shopgenius-ai-backend.onrender.com/"
+API_URL = "https://shopgenius-ai-backend.onrender.com/search"
 
 st.set_page_config(page_title="AI Shopping Assistant", layout="centered")
 
@@ -137,5 +137,6 @@ if query:
     })
 
     st.rerun()
+
 
 
