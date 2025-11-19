@@ -1,182 +1,128 @@
-🛒 ShopGenius AI Assistant
-AI-Powered Virtual Shopping Assistant (FastAPI + Streamlit + MongoDB + NLP)
+# 🛒 ShopGenius AI Assistant  
+### _AI-Powered Virtual Shopping Assistant (FastAPI + Streamlit + MongoDB + NLP)_
 
-🚧 STATUS: PROJECT UNDER ACTIVE DEVELOPMENT
-This project is NOT fully completed. Several features are still being built, refined, and optimized.
+---
+
+## 🚧 Project Status: UNDER ACTIVE DEVELOPMENT  
+This project is **NOT fully completed**.  
+Several features are still being built, refined, and optimized.
+
 We are actively working on:
 
-Improving NLP accuracy
+- Improving NLP accuracy  
+- Adding more API integrations  
+- Enhancing UI/UX  
+- Stabilizing FastAPI backend  
+- Fixing detected bugs  
+- Expanding admin features  
 
-Adding more API integrations
+➡️ **Expect rapid updates & improvements!**
 
-Enhancing UI/UX
+---
 
-Stabilizing FastAPI backend
+## 🌟 Overview  
 
-Fixing detected bugs
+**ShopGenius AI Assistant** is a smart, interactive virtual shopping chatbot that helps users:
 
-Expanding admin features
+- 🔍 Search products  
+- 🆚 Compare two items  
+- 🌐 Translate multi-language queries  
+- 📈 Track price history  
+- 💬 Chat with an AI-style interface  
+- 🔐 Login & signup securely  
+- 🛠 Manage users through an Admin Panel  
 
-So expect quick updates and improvements!
+---
 
-🌟 Overview
+## 🚀 Live Demo  
+_(Add your Streamlit Cloud link here after deployment)_  
 
-ShopGenius AI Assistant is a smart, interactive virtual shopping chatbot that helps users:
 
-Search products
 
-Compare two items
+---
 
-Translate multi-language queries
+## 🧠 Features  
 
-Track price history
+### 🔍 Smart Product Search  
+Supports queries like:
+- *iPhone 13 under 50000*
+- *Samsung S22 mobile*
+- *Laptop below 40000*
 
-Chat with an AI-driven UI
-
-View clean product cards
-
-Login & signup
-
-Manage users through an admin panel
-
-🚀 Live Demo
-
-(You will paste your Streamlit Cloud link here after deployment)
-
-https://your-streamlit-app-url.streamlit.app
-
-🧠 Features
-🔍 Smart Product Search
-
-Search any product like:
-
-iPhone 13 under 50000
-
-Samsung s22 mobile
-
-Laptop below 40000
-
-🌐 Multi-Language Support
-
+### 🌐 Multi-Language Support  
 Automatic translation using Google Translator API.
 
-🆚 Product Comparison
-
+### 🆚 Product Comparison  
 Ask:
+- *compare iphone 13 and samsung s22
 
-compare iphone 13 and samsung s22
 
-💰 USD → INR Price Conversion
+### 💰 USD → INR Price Conversion  
+Backend automatically converts all detected prices to Indian Rupees.
 
-All prices automatically converted to INR.
+### 📊 Price History Tracking  
+Every search is saved in MongoDB for analytics and trends.
 
-📊 Price History Tracking
+### 🔐 Authentication System  
+- User Signup  
+- Login  
+- Role-based access (User / Admin)
 
-Every product search is stored in MongoDB.
+### 🛠 Admin Panel  
+Admins can:
+- View all users  
+- Delete users  
+- Upgrade users to admin  
 
-🔐 Auth System
+### 💬 Chat-Based UI  
+Modern Streamlit chat interface for smooth user experience.
 
-User signup
+---
 
-Login
+## 🏗 Tech Stack  
 
-Role-based access
+| Layer | Technology |
+|------|-------------|
+| **Frontend** | Streamlit |
+| **Backend** | FastAPI |
+| **Database** | MongoDB Atlas |
+| **NLP Engine** | spaCy |
+| **Translation** | Deep Translator |
+| **Product API** | RapidAPI Amazon Search |
 
-🛠 Admin Panel
+---
 
-Admin can:
-
-View users
-
-Delete users
-
-Upgrade to admin
-
-💬 Chat-Based UI
-
-Modern Streamlit chat interface.
-
-🏗 Tech Stack
-Layer	Technology
-Frontend	Streamlit
-Backend	FastAPI
-Database	MongoDB Atlas
-NLP	spaCy
-Translation	GoogleTranslator
-Product API	RapidAPI Amazon Search
-📁 Project Structure
+## 📁 Project Structure  
 project/
- ├── app.py
- ├── main.py
- ├── api_handler.py
- ├── nlp_engine.py
- ├── database.py
- ├── pages/
- │     ├── login.py
- │     ├── signup.py
- │     ├── admin.py
- │     └── dashboard.py
- ├── requirements.txt
- └── .env
+├── app.py
+├── main.py
+├── api_handler.py
+├── nlp_engine.py
+├── database.py
+├── pages/
+│ ├── login.py
+│ ├── signup.py
+│ ├── admin.py
+│ └── dashboard.py
+├── requirements.txt
+└── .env
 
-⚙️ Setup Instructions
-1️⃣ Clone Repository
+
+---
+
+## ⚙️ Setup Instructions  
+
+### 1️⃣ Clone the Repository  
+```bash
 git clone https://github.com/your-username/shopgenius-ai-assistant
 cd shopgenius-ai-assistant
-
-2️⃣ Install Dependencies
-pip install -r requirements.txt
-
-3️⃣ Configure Environment Variables
-
-Create a .env file:
+```
+### 2️⃣ Install Dependencies
+```bash
+-pip install -r requirements.txt
+```
+###3️⃣ Create .env file
 
 MONGO_URI=your_mongodb_atlas_url
 RAPID_AMAZON_KEY=your_rapid_api_key
-RAPID_AMAZON_HOST=your_amazon_host
-
-▶️ Run Backend (FastAPI)
-uvicorn main:app --reload
-
-▶️ Run Frontend (Streamlit)
-streamlit run app.py
-
-☁️ Deploy on Streamlit Cloud
-
-Push the project to GitHub
-
-Open share.streamlit.io
-
-Select your repository
-
-Choose app.py as the entry point
-
-Add secrets under Manage Secrets
-
-Deploy 🚀
-
-🔮 Future Enhancements
-
-(These are planned and will be added soon)
-
-Flipkart product API
-
-Voice search
-
-Real-time price alerts
-
-Smart product recommendations
-
-More NLP intent detection
-
-Better UI improvements
-
-⭐ Support
-
-If you like this project, please ⭐ star the repository.
-It motivates further development and improvements!
-
-📬 Contact
-
-Developer: Subham Maity
-📧 Email: work.subham2004@gmail.com
+RAPID_AMAZON_HOST=your_rapid_api_host
