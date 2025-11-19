@@ -5,7 +5,6 @@ from pymongo import MongoClient
 from datetime import datetime
 import hashlib
 
-load_dotenv()
 
 # -----------------------------
 # MONGO CONNECTION
@@ -136,4 +135,5 @@ def get_price_history(title):
     if price_col is None:
         return []
     return list(price_col.find({"title": title}).sort("timestamp", -1))
+
 
