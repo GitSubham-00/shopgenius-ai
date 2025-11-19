@@ -80,7 +80,7 @@ if query:
     # CALL BACKEND API
     # -------------------------------------------------
     try:
-        r = requests.get(API_URL, params={"query": translated}, timeout=10)
+        r = requests.get(API_URL, params={"query": translated}, timeout=30)
         data = r.json()
 
         mode = data.get("mode")
@@ -137,4 +137,5 @@ if query:
     })
 
     st.rerun()
+
 
