@@ -1,25 +1,26 @@
 # database.py
 
 import os
+import hashlib
 from pymongo import MongoClient
 from datetime import datetime
-import hashlib
-
+import streamlit as st
 
 # -----------------------------
-# MONGO CONNECTION
+# LOAD MONGO_URI FROM STREAMLIT SECRETS
 # -----------------------------
-MONGO_URI = os.environ.get("MONGO_URI")
+# Streamlit Cloud DOES NOT use .env or load_dotenv()
+# So we read it ONLY from st.secrets
 
-if not MONGO_URI:
-    print("[database] ❌ MONGO_URI missing in Streamlit Secrets!")
+MONGO_URI = st.secrets.get("MONGO_URI", None)
 
 print("[database] MONGO_URI Loaded:", bool(MONGO_URI))
 
+# Create client
 client = MongoClient(MONGO_URI) if MONGO_URI else None
 db = client["shopping_assistant_"] if client is not None else None
 
-# Collections (⚠ FIXED boolean usage)
+# Collections
 search_col = db["search_history_"] if db is not None else None
 price_col = db["price_history_"] if db is not None else None
 users_col = db["users"] if db is not None else None
@@ -33,31 +34,30 @@ def hash_password(password: str):
 
 
 # -----------------------------
-# AUTO-CREATE DEFAULT ADMIN
+# CREATE DEFAULT ADMIN
 # -----------------------------
 def ensure_admin_exists():
-    if users_col is not None:
-        admin_exists = users_col.find_one({"role": "admin"})
-        if admin_exists:
-            print("[database] ✔ Admin already exists")
-            return
-
-        users_col.insert_one({
-            "name": "Subham",
-            "email": "work.subham2004@gmail.com",
-            "password": hash_password("admin123"),
-            "role": "admin",
-            "created_at": datetime.utcnow()
-        })
-
-        print("[database] ⭐ Default Admin Created:")
-        print("    Email: work.subham2004@gmail.com")
-        print("    Password: admin123")
-    else:
+    if users_col is None:
         print("[database] ❌ Users collection missing")
+        return
+
+    admin_exists = users_col.find_one({"role": "admin"})
+    if admin_exists:
+        print("[database] ✔ Admin already exists")
+        return
+
+    users_col.insert_one({
+        "name": "Subham",
+        "email": "work.subham2004@gmail.com",
+        "password": hash_password("admin123"),
+        "role": "admin",
+        "created_at": datetime.utcnow()
+    })
+
+    print("[database] ⭐ Default Admin Created: work.subham2004@gmail.com")
 
 
-# Run on import
+# Run once
 ensure_admin_exists()
 
 
@@ -78,7 +78,6 @@ def create_user(name, email, password, role="user"):
         "role": role,
         "created_at": datetime.utcnow()
     })
-
     return True, "Account created successfully."
 
 
@@ -135,5 +134,3 @@ def get_price_history(title):
     if price_col is None:
         return []
     return list(price_col.find({"title": title}).sort("timestamp", -1))
-
-
